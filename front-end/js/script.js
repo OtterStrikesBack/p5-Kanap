@@ -19,16 +19,19 @@ function addProduct(data) {
         const h3 = createH3(name)
         const p = createParagraph(description)
 
-        appendToArticle(article, image, h3, p)
+        appendToArticle(article,  [image, h3, p])
         appendToAnchor(anchor, article)
  })
 }
 
-function appendToArticle(article, image, h3, p){
+function appendToArticle(article, array){
+    array.forEach((item) => {
+        article.appendChild(item)
+    })
 
-    article.appendChild(image)
-    article.appendChild(h3)
-    article.appendChild(p)
+    //article.appendChild(image)
+    //article.appendChild(h3)
+    //article.appendChild(p)
 }
 
 function createAnchor(id){
@@ -42,7 +45,6 @@ function appendToAnchor(anchor, article) {
     if (items) {
         items.appendChild(anchor)
         items.appendChild(article)
-        console.log("éléments ajoutés", items)
     }
 
 }
