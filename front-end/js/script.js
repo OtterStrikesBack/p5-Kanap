@@ -19,32 +19,29 @@ function addProduct(data) {
         const h3 = createH3(name)
         const p = createParagraph(description)
 
-        appendToArticle(article,  [image, h3, p])
+        appendToArticle(article, image, h3, p)
         appendToAnchor(anchor, article)
  })
 }
-
-function appendToArticle(article, array){
-    array.forEach((item) => {
-        article.appendChild(item)
-    })
-
-    //article.appendChild(image)
-    //article.appendChild(h3)
-    //article.appendChild(p)
-}
-
-function createAnchor(id){
+function createAnchor(_id){
     const anchor = document.createElement("a")
-    anchor.href = "./product.html?id=42" + id
+    anchor.href = "./product.html?id=42" + _id
     return anchor
 }
 
+function appendToArticle(article, image, h3, p){
+   
+    article.appendChild(image)
+    article.appendChild(h3)
+    article.appendChild(p)
+}
+
+
 function appendToAnchor(anchor, article) {
     const items = document.querySelector("#items")
-    if (items) {
+    if (items != null) {
+        anchor.appendChild(article)
         items.appendChild(anchor)
-        items.appendChild(article)
     }
 
 }
