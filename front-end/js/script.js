@@ -1,27 +1,34 @@
 fetch("http://localhost:3000/api/products")
 .then((res) => res.json())
-.then((data) =>  {
-    console.log(data)
-    return addProduct(data)
-})
+.then((data) => addProduct(data))
 
 
-function addProduct(data) {    
-    const id = data[0]._id
-    const imageUrl = data[0].imageUrl
-    const altTxt = data[0].altTxt
-    const name = data[0].name
-    const description = data[0].description
 
-    const image = createImage(imageUrl, altTxt)
-    const anchor = createAnchor(id)
-    const article = createArticle()
-    const h3 = createH3(name)
-    const p = createParagraph(description)
+function addProduct(data) {  
+    
+    //const imageUrl = data[0].imageUrl
+    //const altTxt = data[0].altTxt
+    //const name = data[0].name
+    //const description = data[0].description  
+    data.forEach((product)=> {
+    
+        const {_id, imageUrl, altTxt, name, description} = product
+        const image = createImage(imageUrl, altTxt)
+        const anchor = createAnchor(_id)
+        const article = document.createElement("article")
+        const h3 = createH3(name)
+        const p = createParagraph(description)
+
+        appendToArticle(article, image, h3, p)
+        appendToAnchor(anchor, article)
+ })
+}
+
+function appendToArticle(article, image, h3, p){
+
     article.appendChild(image)
     article.appendChild(h3)
     article.appendChild(p)
-    appendChildren(anchor, article)
 }
 
 function createAnchor(id){
@@ -30,20 +37,13 @@ function createAnchor(id){
     return anchor
 }
 
-function appendChildren(anchor, article) {
+function appendToAnchor(anchor, article) {
     const items = document.querySelector("#items")
     if (items) {
         items.appendChild(anchor)
         items.appendChild(article)
         console.log("éléments ajoutés", items)
     }
-
-}
-
-function createArticle() {
-    const article = document.createElement("article")
-    const p = createParagraph()
-    return article
 
 }
 
@@ -68,7 +68,5 @@ function createParagraph(description) {
     p.textContent = description
     p.classList.add = ("productDescription")
     return p
-
-
 }
 
