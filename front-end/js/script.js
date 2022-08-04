@@ -8,8 +8,20 @@ fetch("http://localhost:3000/api/products")
 
 function addProduct(data) {    
     const id = data[0]._id
+    const imageUrl = data[0].imageUrl
+    const altTxt = data[0].altTxt
+    const name = data[0].name
+    const description = data[0].description
+
+    const image = createImage(imageUrl, altTxt)
     const anchor = createAnchor(id)
-    appendChildren(anchor)
+    const article = createArticle()
+    const h3 = createH3(name)
+    const p = createParagraph(description)
+    article.appendChild(image)
+    article.appendChild(h3)
+    article.appendChild(p)
+    appendChildren(anchor, article)
 }
 
 function createAnchor(id){
@@ -18,29 +30,44 @@ function createAnchor(id){
     return anchor
 }
 
-function appendChildren(anchor) {
+function appendChildren(anchor, article) {
     const items = document.querySelector("#items")
     if (items) {
         items.appendChild(anchor)
+        items.appendChild(article)
+        console.log("éléments ajoutés", items)
     }
 
 }
 
 function createArticle() {
+    const article = document.createElement("article")
+    const p = createParagraph()
+    return article
 
 }
 
-function createImage() {
+function createImage(imageUrl, altTxt) {
+    const image = document.createElement("img")
+    image.src = imageUrl
+    image.alt = altTxt
+    return image
+}
 
+function createH3(name) {
+   const h3 = document.createElement("h3")
+   h3.textContent = name
+   h3.classList.add("productName")
+   return h3
 
 }
 
-function createH3() {
+function createParagraph(description) {
 
-
-}
-
-function createParagraph() {
+    const p = document.createElement("p")
+    p.textContent = description
+    p.classList.add = ("productDescription")
+    return p
 
 
 }
