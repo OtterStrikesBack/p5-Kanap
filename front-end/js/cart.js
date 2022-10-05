@@ -89,7 +89,7 @@ function deleteArticleFromCart(item){
         `article[data-id="${item.id}"][data-color="${item.color}"]`
     )
     articleToDelete.remove()
-    console.log("delete article", articleToDelete)
+    
 }
 function deleteDataFromCache(item) {
     const key = `${item.id}-${item.color}`
@@ -180,6 +180,7 @@ function submitForm(e){
     }
 
     if (invalideForm()) return 
+    if (invalideEmail()) return
 
     const body = makeRequestBody()
     fetch ("http://localhost:3000/api/products/order",{
@@ -190,13 +191,16 @@ function submitForm(e){
         }
     })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => { 
+        const orderId = data.orderId
+        window.location.href = "/front-end/html/confirmation.html" + "?orderId=" + orderId
+    } )
 
 }
 
 function invalideForm(){
     const form = document.querySelector("cart__order__form")
-    const inputs = form.querySelectorAll("input")
+    const inputs = document.querySelectorAll("input")
     inputs.forEach((input) => {
         if (input.value === ""){
         alert("Veuillez renseigner tous les champs")
@@ -204,6 +208,16 @@ function invalideForm(){
         }
         return false
     })
+}
+
+function invalideEmail(){
+    const email = document.querySelector("#email").value
+    const emailReg = /^[A-Za-z0-9+_.-]+@(.+)$/
+    if (emailReg.test(email) === false) {
+        alert("Veuillez renseigner une email correcte")
+        return true
+    }
+    return false
 }
 
 function makeRequestBody(){
