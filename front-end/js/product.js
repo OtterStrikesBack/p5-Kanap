@@ -2,13 +2,9 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const id = urlParams.get("id")
 const url = 'http://localhost:3000/api/products/' + id
-if (id != null){
-    let itemPrice = 0
-    let imgUrl, altText, articleName
-}
 
 
-
+/*fetch datas from API*/
 fetch (url)
 .then ((response) => response.json())
 .then((res) => handleData(res))
@@ -27,7 +23,10 @@ function handleData(kanap) {
     createColors(colors)
     createDescription(description)
     createPrice(price)
+ 
 }
+
+
 
 function createImage(imageUrl, altTxt) {
     const image = document.createElement("img")
@@ -43,6 +42,7 @@ function createTitle(name) {
     if (h1 !=null) h1.textContent = name
 }
 
+
 function createPrice (price) {
 
     const span = document.querySelector("#price")
@@ -55,7 +55,8 @@ function createDescription (description) {
     const p = document.querySelector("#description")
     if (p !=null) p.textContent = description
 }
-    
+
+/*adding colors to select from*/
 function createColors (colors) {
     const select = document.querySelector("#colors")
     if (colors !=null) {

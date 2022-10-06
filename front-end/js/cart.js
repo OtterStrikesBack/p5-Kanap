@@ -16,7 +16,7 @@ function getItems(){
         cart.push(itemKanap)
     }
 }
-
+/*displaying items*/
 function displayItem(item){
     const article = createArticle(item)
     const div = createImageDiv(item)
@@ -54,7 +54,7 @@ function createCartContent(item){
     return cartItemContent
 }
 
-
+/*settings used to modify quantity or delete items from cart*/
 function createSettings(item){
     const settings = document.createElement("div")
     settings.classList.add("cart__item__content__settings")

@@ -3,7 +3,6 @@ fetch("http://localhost:3000/api/products")
 .then((data) => addProduct(data))
 
 
-
 function addProduct(data) {  
     
     //const imageUrl = data[0].imageUrl
@@ -18,6 +17,7 @@ function addProduct(data) {
         const article = document.createElement("article")
         const h3 = createH3(name)
         const p = createParagraph(description)
+
 
         appendToArticle(article, image, h3, p)
         appendToAnchor(anchor, article)
@@ -34,6 +34,7 @@ function appendToArticle(article, image, h3, p){
     article.appendChild(image)
     article.appendChild(h3)
     article.appendChild(p)
+    
 }
 
 
@@ -68,4 +69,5 @@ function createParagraph(description) {
     p.classList.add = ("productDescription")
     return p
 }
+
 
