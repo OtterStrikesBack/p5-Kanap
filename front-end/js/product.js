@@ -13,6 +13,7 @@ fetch (url)
 .then ((response) => response.json())
 .then((res) => handleData(res))
 
+/*showing all details of the item*/
 function handleData(kanap) {
 
     const {altTxt, colors, description, imageUrl, name, price} = kanap
@@ -67,6 +68,7 @@ function createColors (colors) {
     }
 }
 
+/*adding to cart + validator*/
 const button = document.querySelector("#addToCart")
 if (button != null){
     button.addEventListener("click", (e) => {

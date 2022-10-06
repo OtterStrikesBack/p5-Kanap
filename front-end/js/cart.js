@@ -7,6 +7,7 @@ const orderButton = document.querySelector("#order")
 getItems()
 cart.forEach(item => displayItem(item))
 
+/*getting items from the localStorage*/
 function getItems(){
     const numberOfItems = localStorage.length
     for(let i = 0; i < numberOfItems; i++){
@@ -53,6 +54,7 @@ function createCartContent(item){
     return cartItemContent
 }
 
+
 function createSettings(item){
     const settings = document.createElement("div")
     settings.classList.add("cart__item__content__settings")
@@ -96,6 +98,7 @@ function deleteDataFromCache(item) {
     localStorage.removeItem(key)
 }
 
+/*change the quantity of items in the cart*/
 function addQuantity(settings, item){
     const quantity = document.createElement("div")
     quantity.classList.add("cart__item__content__settings__quantity")
@@ -126,6 +129,7 @@ function updateQuantityAndPrice(id, newValue, item){
     newDataToCache(item)
 }
 
+/*change datas in cache*/
 function newDataToCache(item){
     const data = JSON.stringify(item)
     const key = `${item.id}-${item.color}`
@@ -210,6 +214,7 @@ function invalideForm(){
     })
 }
 
+/*using regex to check if email is valid*/
 function invalideEmail(){
     const email = document.querySelector("#email").value
     const emailReg = /^[A-Za-z0-9+_.-]+@(.+)$/
@@ -239,6 +244,7 @@ function makeRequestBody(){
     }
     return body
 }
+
 function getIds() {
     const numberOfProducts = localStorage.length
     const ids = []

@@ -14,6 +14,7 @@ function showOrderId(orderId){
     orderIdElement.textContent = orderId
 }
 
+/* removing items from the cache when order is validated*/
 function cleanCache(){
     const cache = window.localStorage
     cache.clear()
