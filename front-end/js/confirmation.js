@@ -2,6 +2,7 @@ const orderId = getOrderId()
 showOrderId(orderId)
 cleanCache()
 
+/*getting orderId*/
 function getOrderId(){
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
@@ -9,6 +10,7 @@ function getOrderId(){
     
 }
 
+/*showing order id to customer*/
 function showOrderId(orderId){
     const orderIdElement = document.getElementById("orderId")
     orderIdElement.textContent = orderId

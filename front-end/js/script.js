@@ -1,14 +1,14 @@
+/*fetching products from API*/
 fetch("http://localhost:3000/api/products")
 .then((res) => res.json())
 .then((data) => addProduct(data))
+.catch(() =>
+      alert("Nous rencontrons actuellement un souci technique, merci de réessayer ultérieurement")
+    );
 
-
+/*add items to main page*/
 function addProduct(data) {  
     
-    //const imageUrl = data[0].imageUrl
-    //const altTxt = data[0].altTxt
-    //const name = data[0].name
-    //const description = data[0].description  
     data.forEach((product)=> {
     
         const {_id, imageUrl, altTxt, name, description} = product
@@ -23,12 +23,14 @@ function addProduct(data) {
         appendToAnchor(anchor, article)
  })
 }
+/*creating anchor for each item, pulling it from back-end and redirecting to correct item with id*/
 function createAnchor(_id){
     const anchor = document.createElement("a")
     anchor.href = "./product.html?id=" + _id
     return anchor
 }
 
+/*adding article, image, h3 and p to artiche*/
 function appendToArticle(article, image, h3, p){
    
     article.appendChild(image)
@@ -37,7 +39,7 @@ function appendToArticle(article, image, h3, p){
     
 }
 
-
+/*appending article to the anchor*/
 function appendToAnchor(anchor, article) {
     const items = document.querySelector("#items")
     if (items != null) {
@@ -47,6 +49,7 @@ function appendToAnchor(anchor, article) {
 
 }
 
+/*creating image with alt text*/
 function createImage(imageUrl, altTxt) {
     const image = document.createElement("img")
     image.src = imageUrl
@@ -54,6 +57,7 @@ function createImage(imageUrl, altTxt) {
     return image
 }
 
+/*creating name's product*/
 function createH3(name) {
    const h3 = document.createElement("h3")
    h3.textContent = name
@@ -62,6 +66,7 @@ function createH3(name) {
 
 }
 
+/*creating paragraph with item's description*/
 function createParagraph(description) {
 
     const p = document.createElement("p")
