@@ -1,4 +1,4 @@
-/*fetching products from API*/
+//fetching products from API
 fetch("http://localhost:3000/api/products")
 .then((res) => res.json())
 .then((data) => addProduct(data))
@@ -6,7 +6,7 @@ fetch("http://localhost:3000/api/products")
       alert("Nous rencontrons actuellement un souci technique, merci de réessayer ultérieurement")
     );
 
-/*add items to main page*/
+//add items to main page
 function addProduct(data) {  
     
     data.forEach((product)=> {
@@ -23,14 +23,14 @@ function addProduct(data) {
         appendToAnchor(anchor, article)
  })
 }
-/*creating anchor for each item, pulling it from back-end and redirecting to correct item with id*/
+//creating anchor for each item, pulling it from back-end and redirecting to correct item with id
 function createAnchor(_id){
     const anchor = document.createElement("a")
     anchor.href = "./product.html?id=" + _id
     return anchor
 }
 
-/*adding article, image, h3 and p to artiche*/
+//adding article, image, h3 and p to artiche
 function appendToArticle(article, image, h3, p){
    
     article.appendChild(image)
@@ -39,7 +39,7 @@ function appendToArticle(article, image, h3, p){
     
 }
 
-/*appending article to the anchor*/
+//appending article to the anchor
 function appendToAnchor(anchor, article) {
     const items = document.querySelector("#items")
     if (items != null) {
@@ -49,7 +49,7 @@ function appendToAnchor(anchor, article) {
 
 }
 
-/*creating image with alt text*/
+//creating image with alt text
 function createImage(imageUrl, altTxt) {
     const image = document.createElement("img")
     image.src = imageUrl
@@ -57,7 +57,7 @@ function createImage(imageUrl, altTxt) {
     return image
 }
 
-/*creating name's product*/
+//creating name's product
 function createH3(name) {
    const h3 = document.createElement("h3")
    h3.textContent = name
@@ -66,7 +66,7 @@ function createH3(name) {
 
 }
 
-/*creating paragraph with item's description*/
+//creating paragraph with item's description
 function createParagraph(description) {
 
     const p = document.createElement("p")

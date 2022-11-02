@@ -1,23 +1,11 @@
-const orderId = getOrderId()
-showOrderId(orderId)
-cleanCache()
+function confirmation() {
+    const orderId = document.querySelector("#orderId");
+    const orderIdUrl = new URL(location.href).searchParams.get("id");
+    orderId.textContent = orderIdUrl;
+  
+    // deleting order from localStorage
+    localStorage.removeItem("product");
+  }
+  
+  confirmation()
 
-/*getting orderId*/
-function getOrderId(){
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-    return urlParams.get("orderId")
-    
-}
-
-/*showing order id to customer*/
-function showOrderId(orderId){
-    const orderIdElement = document.getElementById("orderId")
-    orderIdElement.textContent = orderId
-}
-
-/* removing items from the cache when order is validated*/
-function cleanCache(){
-    const cache = window.localStorage
-    cache.clear()
-}
